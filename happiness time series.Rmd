@@ -1,0 +1,69 @@
+---
+title: "Econometrics EDA"
+author: "20bda55"
+date: "21/11/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#### LOAD PACKAGES
+
+```{r, message=FALSE,warning=FALSE}
+library(ggplot2)
+library(plotly)
+```
+
+#### LOAD DATA
+
+```{r, message=FALSE}
+df <- read.csv("C:/Users/User/Downloads/happiness.csv")
+
+str(df)
+```
+```{r}
+# variable names
+colnames(df)
+
+```
+The dataset gives us information on the number of searches of the word "happiness" in India from November 2016 to Noember 2021.
+
+```{r}
+df$Week <-as.Date(df$Week)
+str(df)
+```
+
+```{r}
+# Check for missing values
+sum(is.na(df))
+```
+```{r}
+# Check the frequency of the time series data
+frequency(df)
+```
+```{r}
+# Check the cycle of the time series
+cycle(df)
+```
+
+
+
+```{r}
+head(df)
+```
+```{r}
+summary(df)
+```
+#### EDA
+
+
+```{r}
+fig <- plot_ly(df, x = ~Week, y = ~happiness...India., type = 'bar')
+fig
+```
+
+
+We can see that there are huge hikes in search for the word before the 15th, after 20th and before 25th weeks.
+Also, during May 2020, a lot of people searched for the word "happiness".
